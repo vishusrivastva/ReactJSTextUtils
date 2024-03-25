@@ -32,16 +32,24 @@ export default function TextForm(props) {
   return (
     <>
       <div>
-        <div className="container mb-3">
+        <div
+          className="container "
+          style={{ color: props.mode === "dark" ? "white" : "#042743" }}
+        >
           <h1>{props.heading}</h1>
           <textarea
             className="form-control"
+            style={{
+              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              color: props.mode === "dark" ? "white" : "#042743",
+            }}
             value={text}
             id="myBox"
             rows="8"
             onChange={handleOnChange}
           ></textarea>
         </div>
+        <div className="container my-3">
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
           Covert to Uppercase
         </button>
@@ -57,15 +65,24 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-1" onClick={handleExtaSpaces}>
           Remove Extra Spaces
         </button>
+        </div>
+        
       </div>
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "#042743" }}
+      >
         <h2>Your Text Summmary</h2>
         <p>
           {text.split(" ").length} words and {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} Minutes read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>
+          {text.length > 0
+            ? text
+            : "Type something in the above Text Box to preview it here."}
+        </p>
       </div>
     </>
   );
